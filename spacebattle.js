@@ -22,10 +22,11 @@
 
 // CANNOT do prompts in VSC
             //ship is attacking, ask first
+            function shipfight (){
+
+            let userInput = prompt("Do you wish to attack?")     
 
             while( Ship.hull > 0){
-
-            let userInput = prompt("Do you wish to attack?")  
 
             if (userInput == 'yes'){
             Ship.attack()
@@ -34,13 +35,19 @@
              Ship.retreat()   
               }  
             else { 
-                console.log('yes or no captain.')
+                userInput = prompt('yes or no captain.')
               }
             
             //alien is attacting
             AlienInvaders.explode
+            
             console.log('Alien ship health = ' + AlienInvaders.hull)
+            console.log('Our ship health = ' + Ship.hull)
+
             }
+
+            Ship.explode
+        }
 
 
 //ship properties
