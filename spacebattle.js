@@ -7,51 +7,88 @@
 // you win if you destroy all alien ships
 // loose game if you are destroyed
 
+// let userInput = prompt("Do you wish to attack?")
+// // CANNOT do prompts in VSC
 
+// while(userInput != 7){
+//     //if they did not put in 7
+//     userInput = prompt("Try again")
+// }
+// //otherwise
+// console.log("YOU GOT IT! Thats a 7 alright!")
+
+
+
+
+// CANNOT do prompts in VSC
+            //ship is attacking, ask first
+
+            while( Ship.hull > 0){
+
+            let userInput = prompt("Do you wish to attack?")  
+
+            if (userInput == 'yes'){
+            Ship.attack()
+              }
+            else if (userInput == 'no'){
+             Ship.retreat()   
+              }  
+            else { 
+                console.log('yes or no captain.')
+              }
+            
+            //alien is attacting
+            AlienInvaders.explode
+            console.log('Alien ship health = ' + AlienInvaders.hull)
+            }
 
 
 //ship properties
-class Ship {
-
-    constructor(hull, firepower, accuracy){
-        this.hill = hull,
-        this.firepower = firepower,
-        this.accuracy = accuracy,
-
-
-     },
 
 //hull = hitpoints if reaches 0 or less ship is destroyed
 
 //firepower = damage done to hull of target with successful hit
 
 //accuracy = chance between 0 and 1 ship will hit target
+class Ship {
 
+    constructor(hull, firepower, accuracy){
+        this.hill = hull,
+        this.firepower = firepower,
+        this.accuracy = accuracy,
+        this.running = true
+
+
+     }
 
 attack(){ 
-    //if yes attack Emery in the front shuld we attack?")
+    //if yes attack Enemy in the front should we attack?")
     console.log('Attacking enemy in front')
     //attack action here
-    AlienInvaders.hull - this.firepower / this.accuracy
+    AlienInvaders.hull = AlienInvaders.hull - (this.firepower / this.accuracy)
 
 }
-damage(){ 
-    if (Math.random() < alien[0].accuracy) {
-        console.log('You have been hit!')
-    }
-}
+// damage(){ 
+//     if (Math.random() < alien[0].accuracy) {
+//         console.log('You have been hit!')
+//     }
+// }
 
 retreat(){
     //if btn is retreat
     console.log('Retreating from enemy, RUNN!~')
+    return this.running = false
     //stop attack in here
 }
 
 explode(){ 
-    if ( this.hull < 0){
+    if ( this.hull <= 0){
     console.log(' G A M E  O V E R ')}
-        
+    else { 
+        return attack()
+    }    
 }
+        
 }
 //hull = 20
 
@@ -71,6 +108,7 @@ class AlienInvaders{
         this.hill = hull,
         this.firepower = firepower,
         this.accuracy = accuracy,
+        this.running =true
 
 
      }
@@ -85,29 +123,36 @@ class AlienInvaders{
         //attack action here
         console.log(' ^#YSDF^@JSAJ!!!!')
         //attack action here
-        Ship.hull - this.firepower / this.accuracy
+        Ship.hull = Ship.hull - (this.firepower / this.accuracy)
     
         //decriment hull witht the amount of fire power availible
     }
 
     explode(){ 
-        if ( this.hull < 0){
-            console.log(' G A M E  O V E R ')}
+        if ( this.hull <= 0){
+            console.log('Enemy Ship Destroyed')
+           return this.running = false
+        }
+        else { 
+            return attack()
+        }    
     }
+    
 
 }
 
+const alien1 = new AlienInvaders(3, 2, .6)
 //battleing up to six ships
 
 //accuracy for hit
-if (Math.random() < alien[0].accuracy) {
-	console.log('You have been hit!')
-}
+// if (Math.random() < alien[0].accuracy) {
+// 	console.log('You have been hit!')
+// }
 
-else{ 
-    return attack()
-    //if not hit attack back
-}
+// else{ 
+//     return attack()
+//     //if not hit attack back
+// }
 
 
 
