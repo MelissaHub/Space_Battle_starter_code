@@ -22,32 +22,6 @@
 
 // CANNOT do prompts in VSC
             //ship is attacking, ask first
-            function shipfight (){
-
-            let userInput = prompt("Do you wish to attack?")     
-
-            while( Ship.hull > 0){
-
-            if (userInput == 'yes'){
-            Ship.attack()
-              }
-            else if (userInput == 'no'){
-             Ship.retreat()   
-              }  
-            else { 
-                userInput = prompt('yes or no captain.')
-              }
-            
-            //alien is attacting
-            AlienInvaders.explode
-            
-            console.log('Alien ship health = ' + AlienInvaders.hull)
-            console.log('Our ship health = ' + Ship.hull)
-
-            }
-
-            Ship.explode
-        }
 
 
 //ship properties
@@ -57,10 +31,12 @@
 //firepower = damage done to hull of target with successful hit
 
 //accuracy = chance between 0 and 1 ship will hit target
+const UssAssembly = new Ship(20, 5, .7)
+
 class Ship {
 
     constructor(hull, firepower, accuracy){
-        this.hill = hull,
+        this.hull = hull,
         this.firepower = firepower,
         this.accuracy = accuracy,
         this.running = true
@@ -72,7 +48,7 @@ attack(){
     //if yes attack Enemy in the front should we attack?")
     console.log('Attacking enemy in front')
     //attack action here
-    AlienInvaders.hull = AlienInvaders.hull - (this.firepower / this.accuracy)
+    alien1.hull = alien1.hull - (this.firepower / this.accuracy)
 
 }
 // damage(){ 
@@ -90,7 +66,9 @@ retreat(){
 
 explode(){ 
     if ( this.hull <= 0){
-    console.log(' G A M E  O V E R ')}
+    console.log(' G A M E  O V E R ')
+    return this.running = false
+    }
     else { 
         return attack()
     }    
@@ -103,52 +81,51 @@ explode(){
 
 // accuracy = .7
 
-const UssAssembly = new Ship(20, 5, .7)
 
 
 
 
+//your ships current health, alien attck power and accuracy
+UssAssembly.attack()
+UssAssembly.retreat()   
+alien1.explode()
+UssAssembly.explode()
 
-class AlienInvaders{
+//class is empty so needed project
+//needed to call function
+            
+function shipfight (){
 
-    constructor(hull, firepower, accuracy){
-        this.hill = hull,
-        this.firepower = firepower,
-        this.accuracy = accuracy,
-        this.running =true
+while( UssAssembly.hull > 0){
+let userInput = prompt("Do you wish to attack?")  
 
+//find out how to refresh page
 
-     }
+console.log(UssAssembly.hull)       
 
+if (userInput == 'yes'){
+    UssAssembly.attack()
+  }
+else if (userInput == 'no'){
+    UssAssembly.retreat()   
+  }  
+else { 
+    console.log('yes or no captain.')
+  }
 
-    //hull = between 3-6
-    //firepower = between 2 - 4
-    //accuracy = between .6 and .8
-    //NEED RANDOMIZER
+//alien is attacting
+alien1.explode()
 
-    attack(){ 
-        //attack action here
-        console.log(' ^#YSDF^@JSAJ!!!!')
-        //attack action here
-        Ship.hull = Ship.hull - (this.firepower / this.accuracy)
-    
-        //decriment hull witht the amount of fire power availible
-    }
-
-    explode(){ 
-        if ( this.hull <= 0){
-            console.log('Enemy Ship Destroyed')
-           return this.running = false
-        }
-        else { 
-            return attack()
-        }    
-    }
-    
+console.log('Alien ship health = ' +  alien1.hull)
+console.log('Our ship health = ' + UssAssembly.hull)
 
 }
 
-const alien1 = new AlienInvaders(3, 2, .6)
+UssAssembly.explode()
+}
+
+shipfight()
+
 
 
 
