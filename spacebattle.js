@@ -149,6 +149,9 @@ class AlienInvaders{
 }
 
 const alien1 = new AlienInvaders(3, 2, .6)
+
+
+
 //battleing up to six ships
 
 //accuracy for hit
