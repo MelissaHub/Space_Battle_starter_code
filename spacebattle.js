@@ -31,8 +31,6 @@
 //firepower = damage done to hull of target with successful hit
 
 //accuracy = chance between 0 and 1 ship will hit target
-const UssAssembly = new Ship(20, 5, .7)
-
 class Ship {
 
     constructor(hull, firepower, accuracy){
@@ -81,52 +79,113 @@ explode(){
 
 // accuracy = .7
 
+const UssAssembly = new Ship(20, 5, .7)
 
 
 
 
+
+class AlienInvaders{
+
+    constructor(hull, firepower, accuracy){
+        this.hull = hull,
+        this.firepower = firepower,
+        this.accuracy = accuracy,
+        this.running =true
+
+
+     }
+    //hull = between 3-6
+    //firepower = between 2 - 4
+    //accuracy = between .6 and .8
+    //NEED RANDOMIZER
+
+    attack(){ 
+        //attack action here
+        console.log(' ^#YSDF^@JSAJ!!!!')
+        //attack action here
+        UssAssembly.hull =  UssAssembly.hull - (this.firepower / this.accuracy)
+    
+        //decriment hull witht the amount of fire power availible
+    }
+
+    explode(){ 
+        if ( this.hull <= 0){
+            console.log('Enemy Ship Destroyed')
+           return this.running = false
+        }
+        else { 
+            return attack()
+        }    
+    }
+    
+
+}
+
+const alien1 = new AlienInvaders(3, 2, .6)
 //your ships current health, alien attck power and accuracy
-UssAssembly.attack()
-UssAssembly.retreat()   
-alien1.explode()
-UssAssembly.explode()
+
+
+
+
+let ask = document.querySelector('.ask')
+//debating to assign ask/ how to when respnding
+let response = document.querySelector('.response')
+const btn = document.querySelector('button')
+//assigning submit button
+
+btn.addEventListener('click',shipfight)
+//event of submiting button activating shipfight
+
+
+
+console.log(shipfight())
 
 //class is empty so needed project
 //needed to call function
-            
-function shipfight (){
+
+function shipfight(){
 
 while( UssAssembly.hull > 0){
-let userInput = prompt("Do you wish to attack?")  
 
+
+ console.log(ask)
+//let userInput = prompt("Do you wish to attack?")  
 //find out how to refresh page
-
-console.log(UssAssembly.hull)       
+const userInput = document.querySelector('input') 
 
 if (userInput == 'yes'){
+
     UssAssembly.attack()
+    //should attack enemy once
+    alien1.explode()
+    // if hull is below zero it should explode else attack once
+    console.log(response.('Our ship health = ' + UssAssembly.hull +<br>'Alien ship health = ' +  alien1.hull</br>))
+    //should shoot back up to ask
   }
 else if (userInput == 'no'){
-    UssAssembly.retreat()   
+    UssAssembly.retreat()  
+    //should log retreat and then stop
+
   }  
 else { 
     console.log('yes or no captain.')
   }
 
-//alien is attacting
-alien1.explode()
 
-console.log('Alien ship health = ' +  alien1.hull)
-console.log('Our ship health = ' + UssAssembly.hull)
 
 }
 
 UssAssembly.explode()
+//outside while if hull below zero it explode
 }
 
-shipfight()
 
 
+// UssAssembly.attack()
+// UssAssembly.retreat()   
+// alien1.explode()
+// UssAssembly.explode()
 
 
 //battleing up to six ships
